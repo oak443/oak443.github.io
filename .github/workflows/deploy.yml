@@ -1,37 +1,38 @@
-# Gemini 3 generated
-name: Deploy Zola site to GitHub Pages
+# https://github.com/getzola/github-pages
+name: Build and deploy Zola website
 on:
   push:
     branches:
-      - main # 监听 main 分支的推送
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v6.0.1
+
+      - name: Build Zola + upload Pages artifact
+        uses: getzola/github-pages@066755243e69f508fd1a74739fbf1a65f656c790
         with:
-          submodules: recursive
-      - name: Install and Build Zola
-        uses: shalozz/zola-deploy-action@v0.19.1
-        env:
-          # 注意：这里不再需要配置 PAGES_BRANCH
-          BUILD_DIR: public
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # 官方步骤：上传构建产物
-        with:
-          path: ./public
+          zola_version: v0.22.0
 
   deploy:
+    runs-on: ubuntu-latest
     needs: build
-    permissions:
-      pages: write # 必须有写权限
-      id-token: write # 必须有 ID token 权限
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # 官方步骤：执行部署
+        uses: actions/deploy-pages@v4
