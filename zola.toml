@@ -31,6 +31,7 @@ links = [
     { title = "About", href = "https://www.honala.xyz/" },
     { title = "Email", href = "mailto:tyg8614@gmail.com" },
     { title = "GitHub", href = "https://github.com/oak443" },
+    { title = "Links", href = "links" },
     { title = "Luogu", href = "https://www.luogu.com.cn/user/1099057" },
     # ...
 ]

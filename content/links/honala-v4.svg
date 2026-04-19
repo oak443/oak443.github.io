@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="800" height="320">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="160" fill="#ffffff"/>
+
+  <!-- Wordmark centered -->
+  <text x="200" y="103" font-family="Syne, sans-serif" font-size="52" font-weight="700"
+        letter-spacing="-1" fill="#111111" text-anchor="middle">honala</text>
+
+  <!-- Blue dot — slight gap after text end, superscript height -->
+  <circle cx="308" cy="68" r="6" fill="#0066ff"/>
+</svg>
