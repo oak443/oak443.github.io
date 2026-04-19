@@ -3,20 +3,35 @@ name: Deploy Zola site to GitHub Pages
 on:
   push:
     branches:
-      - main  # 监听 main 分支的推送
+      - main # 监听 main 分支的推送
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          submodules: recursive  # 如果你用了主题，这步很重要
-
-      - name: Install and Build
-        uses: shalozz/zola-deploy-action@v0.19.1 # 使用社区维护的 Zola 部署插件
+          submodules: recursive
+      - name: Install and Build Zola
+        uses: shalozz/zola-deploy-action@v0.19.1
         env:
-          PAGES_BRANCH: gh-pages      # 构建后的静态文件存放分支
-          BUILD_DIR: public           # Zola 默认输出目录
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # 注意：这里不再需要配置 PAGES_BRANCH
+          BUILD_DIR: public
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3 # 官方步骤：上传构建产物
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write # 必须有写权限
+      id-token: write # 必须有 ID token 权限
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # 官方步骤：执行部署
