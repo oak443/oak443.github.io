@@ -1,8 +1,6 @@
 +++
-title = "博客文章"
+title = "Blog"
 render = true
 template = "section.html"
 sort_by = "date"
 +++
-
-Hi!!!
