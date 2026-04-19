@@ -1,9 +1,6 @@
 +++
 title = "Hello Zola! Hello oak.md!!"
-date = 2026-04-18
-description = "qingshuruwenben"
-
-[taxonomies]
+date = 2026-04-19T19:23+08:00
 +++
 
 我的博客上线了！这是一个测试页面。
