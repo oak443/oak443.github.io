@@ -1,0 +1,22 @@
+# Gemini 3 generated
+name: Deploy Zola site to GitHub Pages
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive  # 如果你用了主题，这步很重要
+
+      - name: Install and Build
+        uses: shalozz/zola-deploy-action@v0.19.1 # 使用社区维护的 Zola 部署插件
+        env:
+          PAGES_BRANCH: gh-pages      # 构建后的静态文件存放分支
+          BUILD_DIR: public           # Zola 默认输出目录
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
