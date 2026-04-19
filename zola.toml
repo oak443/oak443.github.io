@@ -28,7 +28,7 @@ theme = "catppuccin-mocha"
 [extra]
 # Put all your custom variables here
 links = [
-    { title = "About", href = "https://www.honala.xyz/" },
+    { title = "About", href = "about" },
     { title = "Email", href = "mailto:tyg8614@gmail.com" },
     { title = "GitHub", href = "https://github.com/oak443" },
     { title = "Links", href = "links" },
