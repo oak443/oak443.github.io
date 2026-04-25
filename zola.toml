@@ -20,6 +20,9 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
 
+# 开启订阅源生成
+generate_feeds = true
+
 [markdown]
 
 [markdown.highlighting]
@@ -28,10 +31,11 @@ theme = "catppuccin-mocha"
 [extra]
 # Put all your custom variables here
 links = [
-    { title = "About", href = "about" },
+    { title = "About", href = "/about" },
     { title = "Email", href = "mailto:tyg8614@gmail.com" },
     { title = "GitHub", href = "https://github.com/oak443" },
-    { title = "Links", href = "links" },
+    { title = "Links", href = "/links" },
     { title = "Luogu", href = "https://www.luogu.com.cn/user/1099057" },
+    { title = "atom.xml", href = "/atom.xml" },
     # ...
 ]

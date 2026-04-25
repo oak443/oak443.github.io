@@ -1,0 +1,16 @@
+# Gemini 3 generated
+# Zola output directory
+/public/
+
+# Common OS/Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+!.env.example
