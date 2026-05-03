@@ -3,10 +3,21 @@ import { readFileSync, writeFileSync } from 'fs';
 import { globby } from 'globby';
 import katex from 'katex';
 
+// 反转义函数，把 Zola 转义掉的符号换回来
+function decodeHtmlEntities(str) {
+  return str
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
 // 渲染函数：将公式转为 HTML
 const renderMath = (formula, displayMode) => {
+  const cleanFormula = decodeHtmlEntities(formula); // 在交给 KaTeX 之前先清理字符串
   try {
-    return katex.renderToString(formula, {
+    return katex.renderToString(cleanFormula, {
       displayMode,
       throwOnError: false
     });
