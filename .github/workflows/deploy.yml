@@ -26,7 +26,7 @@ jobs:
       - name: Build Zola + upload Pages artifact
         uses: oak443/github-pages@master
         with:
-          zola_version: v0.22.0
+          zola_version: v0.22.1
 
   deploy:
     runs-on: ubuntu-latest
