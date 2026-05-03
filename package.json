@@ -1,0 +1,31 @@
+{
+  "name": "zola-math-pre-renderer",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "globby": "^14.1.0",
+    "rehype-katex": "^7.0.1",
+    "rehype-parse": "^9.0.1",
+    "rehype-stringify": "^10.0.1",
+    "unified": "^11.0.5"
+  },
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oak443/oak443.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oak443/oak443.github.io/issues"
+  },
+  "homepage": "https://github.com/oak443/oak443.github.io#readme",
+  "dependencies": {
+    "katex": "^0.16.45"
+  }
+}

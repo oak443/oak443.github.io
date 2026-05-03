@@ -1,3 +1,4 @@
+# Gemini 3 生成
 name: Build and deploy Zola website
 on:
   push:
@@ -23,10 +24,30 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Build Zola + upload Pages artifact
-        uses: oak443/github-pages@master
+      # 1. 运行 Zola 构建容器
+      - name: Build Zola
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            ghcr.io/getzola/zola:v0.22.0 build
+      
+      # 2. 准备 Node 环境并执行数学公式转换
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          zola_version: v0.22.1
+          node-version: '20'
+          cache: 'npm' # 开启缓存加速构建
+      - name: Pre-render Math
+        run: |
+          npm install
+          node scripts/render-math.mjs
+      
+      # 3. 使用官方 Action 上传处理后的 public 文件夹
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
 
   deploy:
     runs-on: ubuntu-latest
